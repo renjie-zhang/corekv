@@ -23,7 +23,14 @@ type SkipList struct {
 
 func NewSkipList() *SkipList {
 	//implement me here!!!
-	return nil
+	var re = new(SkipList)
+	re.lock = sync.RWMutex{}
+	re.header = nil
+	re.rand = &rand.Rand{}
+	re.maxLevel = defaultMaxLevel
+	re.length = 0
+	re.size = 0
+	return re
 }
 
 type Element struct {
@@ -45,7 +52,10 @@ func (elem *Element) Entry() *codec.Entry {
 }
 
 func (list *SkipList) Add(data *codec.Entry) error {
+	list.lock.Lock()
+	defer list.lock.Unlock()
 	//implement me here!!!
+
 	return nil
 }
 
